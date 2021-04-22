@@ -5,7 +5,6 @@ const { buildSchema } = require('graphql')
 // Create a schema
 const schema = buildSchema(`
 
-
 type Kaiju {
     name: String!
     power: Int!
@@ -17,9 +16,9 @@ type City {
 }
 
 type Battle {
-    fighter1(id: Int!): Kaiju!
-    fighter2(id: Int!): Kaiju!
-	city(id: Int!): City!
+    fighter1: Kaiju!
+    fighter2: Kaiju!
+	arena: City!
 }
 
 type Query {
@@ -27,10 +26,7 @@ type Query {
     allKaiju: [Kaiju!]!
     getCity(id: Int!): City!
     allCities: [City!]!
-    fighter1: Kaiju!
-    fighter2: Kaiju!
     getBattle: Battle! 
-
 }`)
 
 const fighters = [
@@ -61,9 +57,19 @@ const root = {
     allCities: () => {
         return cities
     },
-    // getBattle: 
+    fighter1: () => {
+        return fighters[0]
+    },
+    fighter2: () => {
+        return fighters[1]
+    },
+    arena: () => {
+        return cities[0]
+    },
+    getBattle: () => {
+        return {fighter1,fighter2,arena}
   }
-  
+}
 // Create an express app
 const app = express()
 
