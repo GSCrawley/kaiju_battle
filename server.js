@@ -18,7 +18,7 @@ type City {
 type Battle {
     fighter1: Kaiju!
     fighter2: Kaiju!
-	arena: City!
+	city: City!
 }
 
 type Query {
@@ -26,7 +26,7 @@ type Query {
     allKaiju: [Kaiju!]!
     getCity(id: Int!): City!
     allCities: [City!]!
-    getBattle: Battle! 
+    getBattle(fighter1: String!, fighter2: String!, arena: String!): Battle! 
 }`)
 
 const fighters = [
@@ -57,17 +57,8 @@ const root = {
     allCities: () => {
         return cities
     },
-    fighter1: () => {
-        return fighters[0]
-    },
-    fighter2: () => {
-        return fighters[1]
-    },
-    arena: () => {
-        return cities[0]
-    },
-    getBattle: () => {
-        return {fighter1,fighter2,arena}
+    getBattle: ({fighter1=fighters[0],fighter2=fighters[1],arena=cities[0]}) => {
+        return {fighter1, fighter2, arena}
   }
 }
 // Create an express app
