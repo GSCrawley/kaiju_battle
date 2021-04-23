@@ -30,8 +30,8 @@ type Query {
 }`)
 
 const fighters = [
-    { name: 'Godzilla', power: 72 },
-    { name: 'Mothra', power: 89 },
+    { name: 'Godzilla', power: 89 },
+    { name: 'Mothra', power: 78 },
     { name: 'Kong', power: 68 },
     { name: 'Predator', power: 98 }
 ]
