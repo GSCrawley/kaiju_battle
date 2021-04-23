@@ -18,7 +18,7 @@ type City {
 type Battle {
     fighter1: Kaiju!
     fighter2: Kaiju!
-	city: City!
+	arena: City!
 }
 
 type Query {
@@ -58,7 +58,14 @@ const root = {
         return cities
     },
     getBattle: ({fighter1=fighters[0],fighter2=fighters[1],arena=cities[0]}) => {
-        return {fighter1, fighter2, arena}
+        const kaijus = fighters.filter(obj => obj.name === fighter1 || obj.name === fighter2)
+        const arenas = cities.filter(obj => obj.name === arena)
+        
+        return { 
+            fighter1: { name: fighter1, power: kaijus[0].power}, 
+            fighter2: { name: fighter2, power: kaijus[1].power }, 
+            arena: { name: arena, population: arenas[0].population }
+        }
   }
 }
 // Create an express app
