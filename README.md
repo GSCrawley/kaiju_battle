@@ -1,7 +1,10 @@
 # kaiju_battle
 
+# run the server with: node server.js
+ 
+# in your web browser navigate to: http://localhost:4000/graphql 
 
-# this is my current query, that is getting stuck on getBattle. help!
+# try the following query to see it working:
 
 {
     allKaiju {
@@ -36,23 +39,3 @@
   
    }
 
-# here's the error message:
-{
-  "errors": [
-    {
-      "message": "Cannot return null for non-nullable field Kaiju.name.",
-      "locations": [
-        {
-          "line": 99,
-          "column": 5
-        }
-      ],
-      "path": [
-        "getBattle",
-        "fighter1",
-        "name"
-      ]
-    }
-  ],
-  "data": null
-}
